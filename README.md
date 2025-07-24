@@ -1,18 +1,19 @@
 
 # 🏫 Campus Front-End 项目
 
-这是一个基于 React + Ant Design 构建的校园管理系统前端项目，支持多个用户角色（如学生、教师、管理员）进行操作管理，涵盖如学生事务、人事管理、财务审批等模块，配合后端接口实现数据交互。
+这是一个基于 React + Tailwind CSS 构建的校园管理系统前端项目，支持多个用户角色（如学生、教师、管理员）进行操作管理，涵盖如学生事务、人事管理、财务审批等模块，配合后端接口实现数据交互。
 
 ---
 
 ## 🚀 项目特点
 
-- 🌐 使用 React + Vite 构建高性能前端应用
-- 🎨 UI 基于 Ant Design，界面简洁美观
-- 🔐 支持多角色权限路由控制
-- 🌍 国际化支持（i18n）
+- ⚡ 使用 React + Vite 构建高性能前端应用
+- 🎨 使用 Tailwind CSS 进行快速 UI 样式开发
+- 🔐 支持多角色权限路由控制（React Router DOM）
+- 🌍 国际化支持（i18next）
 - 💬 模块化菜单与动态路由
 - 📁 项目结构清晰，易于扩展与维护
+- 🗃 使用 Zustand 进行全局状态管理
 
 ---
 
@@ -28,14 +29,16 @@ campus-Front-End/
 │   ├── locales/             # 国际化配置
 │   ├── pages/               # 页面级组件（按照模块划分）
 │   ├── router/              # 路由配置
-│   ├── store/               # 状态管理（如 pinia、redux）
+│   ├── store/               # Zustand 状态管理
 │   ├── utils/               # 工具函数
-│   ├── App.tsx             # 应用主组件
-│   └── main.tsx            # 应用入口
-├── .env                    # 环境变量配置
-├── index.html              # HTML 入口
-├── vite.config.ts          # Vite 配置文件
-└── package.json            # 项目依赖和脚本
+│   ├── App.tsx              # 应用主组件
+│   └── main.tsx             # 应用入口
+├── tailwind.config.ts       # Tailwind CSS 配置
+├── postcss.config.js        # PostCSS 配置
+├── .env                     # 环境变量配置
+├── index.html               # HTML 入口
+├── vite.config.ts           # Vite 配置文件
+└── package.json             # 项目依赖和脚本
 ```
 
 ---
@@ -106,10 +109,12 @@ yarn build
 
 ## 📌 开发约定
 
-- 所有请求封装在 `src/api/` 中，统一使用 axios 实例
+- 所有请求封装在 `src/api/` 中，统一使用 Axios 实例
 - 页面组件放置在 `src/pages/模块名/` 中
 - 国际化字段统一维护，命名语义化
-- 提交代码前建议使用 `eslint` 检查代码格式
+- 使用 Tailwind CSS 进行样式开发
+- 状态管理统一使用 Zustand
+- 提交代码前建议使用 ESLint + Prettier 进行格式校验
 
 ---
 
