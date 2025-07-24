@@ -1,0 +1,111 @@
+{
+  "hello": "Hello",
+  "welcome": "Welcome to the dashboard",
+  "menu": {
+    "home": "Home",
+    "calendar": "Calendar",
+    "userProfile": "User Profile",
+    "forms": "Forms",
+    "formElements": "Form Elements",
+    "tables": "Tables",
+    "basicTables": "Basic Tables",
+    "pages": "Pages",
+    "blank": "Blank Page",
+    "error404": "404 Error",
+    "charts": "Charts",
+    "lineChart": "Line Chart",
+    "barChart": "Bar Chart",
+    "uiElements": "UI Elements",
+    "alerts": "Alerts",
+    "avatar": "Avatar",
+    "badge": "Badge",
+    "buttons": "Buttons",
+    "images": "Images",
+    "videos": "Videos",
+    "authentication": "Authentication",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "finance": "Finance Approval",
+    "financeReimburse": "Reimbursement Approval",
+    "financeBudget": "Budget Management",
+    "financePayment": "Payment Approval",
+    "financeRecords": "Finance Records",
+    "students": "Student Affairs Management",
+    "studentsLeave": "Leave Approval",
+    "studentsPerformance": "Performance Management",
+    "studentsDiscipline": "Disciplinary Records",
+    "studentsConsult": "Student Consultation Records",
+    "hr": "HR Management",
+    "hrEmployees": "Employee Information",
+    "hrAttendance": "Attendance Management",
+    "hrPerformance": "Performance Evaluation",
+    "hrOnboarding": "Onboarding Management",
+    "logistics": "Logistics Management",
+    "logisticsFacilities": "Facility Repair",
+    "logisticsSupplies": "Supplies Procurement",
+    "logisticsCleaning": "Cleaning Records"
+  },
+    "financeReimburse": {
+    "title": "Reimbursement Approval",
+    "table": {
+      "applicant": "Applicant",
+      "department": "Department",
+      "amount": "Amount",
+      "type": "Type",
+      "date": "Date",
+      "status": "Status"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "financeBudget": {
+    "title": "Budget Management",
+    "table": {
+      "applicant": "Applicant",
+      "department": "Department",
+      "amount": "Requested Amount",
+      "purpose": "Purpose",
+      "date": "Application Date",
+      "status": "Approval Status"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "financePayment": {
+    "title": "Payment Approval",
+    "table": {
+      "payee": "Payee",
+      "amount": "Amount",
+      "reason": "Reason",
+      "paymentDate": "Planned Payment Date",
+      "status": "Status"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "financeRecords": {
+    "title": "Finance Records",
+    "table": {
+      "type": "Type",
+      "operator": "Operator",
+      "department": "Department",
+      "description": "Description",
+      "amount": "Amount",
+      "date": "Date"
+    },
+    "type": {
+      "reimbursement": "Reimbursement",
+      "payment": "Payment",
+      "budget": "Budget"
+    }
+  }
+}

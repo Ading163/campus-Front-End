@@ -1,0 +1,111 @@
+{
+  "hello": "你好",
+  "welcome": "欢迎来到管理后台",
+  "menu": {
+    "home": "首页",
+    "calendar": "日历",
+    "userProfile": "用户资料",
+    "forms": "表单",
+    "formElements": "表单元素",
+    "tables": "表格",
+    "basicTables": "基础表格",
+    "pages": "页面",
+    "blank": "空白页",
+    "error404": "404错误",
+    "charts": "图表",
+    "lineChart": "折线图",
+    "barChart": "柱状图",
+    "uiElements": "UI元素",
+    "alerts": "提示",
+    "avatar": "头像",
+    "badge": "徽章",
+    "buttons": "按钮",
+    "images": "图片",
+    "videos": "视频",
+    "authentication": "认证",
+    "signIn": "登录",
+    "signUp": "注册",
+    "finance": "财务审批",
+    "financeReimburse": "报销审批",
+    "financeBudget": "预算申请管理",
+    "financePayment": "付款审批",
+    "financeRecords": "财务记录查询",
+    "students": "学生事务管理",
+    "studentsLeave": "请假审批",
+    "studentsPerformance": "成绩管理",
+    "studentsDiscipline": "违纪记录",
+    "studentsConsult": "学生咨询记录",
+    "hr": "人事管理",
+    "hrEmployees": "员工信息",
+    "hrAttendance": "考勤管理",
+    "hrPerformance": "绩效评估",
+    "hrOnboarding": "入职流程管理",
+    "logistics": "后勤管理",
+    "logisticsFacilities": "设备报修",
+    "logisticsSupplies": "物资采购",
+    "logisticsCleaning": "卫生检查记录"
+  },
+  "financeReimburse": {
+    "title": "报销审批",
+    "table": {
+      "applicant": "申请人",
+      "department": "部门",
+      "amount": "金额",
+      "type": "类型",
+      "date": "日期",
+      "status": "状态"
+    },
+    "status": {
+      "pending": "待审批",
+      "approved": "已通过",
+      "rejected": "已拒绝"
+    }
+  },
+  "financeBudget": {
+    "title": "预算申请管理",
+    "table": {
+      "applicant": "申请人",
+      "department": "部门",
+      "amount": "申请金额",
+      "purpose": "用途",
+      "date": "申请日期",
+      "status": "审批状态"
+    },
+    "status": {
+      "pending": "待审批",
+      "approved": "已通过",
+      "rejected": "已拒绝"
+    }
+  },
+  "financePayment": {
+    "title": "付款审批",
+    "table": {
+      "payee": "收款方",
+      "amount": "付款金额",
+      "reason": "付款原因",
+      "paymentDate": "计划付款日期",
+      "status": "状态"
+    },
+    "status": {
+      "pending": "待审批",
+      "approved": "已通过",
+      "rejected": "已拒绝"
+    }
+  },
+  "financeRecords": {
+    "title": "财务记录查询",
+    "table": {
+      "type": "类型",
+      "operator": "经办人",
+      "department": "部门",
+      "description": "摘要",
+      "amount": "金额",
+      "date": "日期"
+    },
+    "type": {
+      "reimbursement": "报销",
+      "payment": "付款",
+      "budget": "预算"
+    }
+  }
+}
