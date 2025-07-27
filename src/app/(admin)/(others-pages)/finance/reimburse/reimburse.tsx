@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/table'
 import Badge from '@/components/ui/badge/Badge'
 import Image from 'next/image'
+import { useI18n } from '@/context/I18nContext'
 
 const reimburseData = [
   {
@@ -50,6 +51,7 @@ const reimburseData = [
   },
 ]
 
+// 审批状态与 Badge 颜色的映射
 const statusColors: Record<string, 'warning' | 'success' | 'error'> = {
   '待审批': 'warning',
   '已通过': 'success',
@@ -57,6 +59,7 @@ const statusColors: Record<string, 'warning' | 'success' | 'error'> = {
 }
 
 export default function Reimburse() {
+  const { t } = useI18n()
   const [status, setStatus] = useState('全部')
 
   const filteredData =
@@ -64,34 +67,38 @@ export default function Reimburse() {
       ? reimburseData
       : reimburseData.filter((item) => item.status === status)
 
+  const statusTabs = ['全部', '待审批', '已通过', '已拒绝']
+
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+      {/* 筛选按钮 */}
       <div className="p-4 flex flex-wrap gap-2">
-        {['全部', '待审批', '已通过', '已拒绝'].map((s) => (
+        {statusTabs.map((s) => (
           <button
             key={s}
             className={`px-4 py-1 rounded text-sm ${status === s
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-200 text-gray-700'
               }`}
             onClick={() => setStatus(s)}
           >
-            {s}
+            {s === '全部' ? t('common.all' as any) : t(`financeReimburse.status.${getStatusKey(s)}` as any)}
           </button>
         ))}
       </div>
-      
+
+      {/* 表格 */}
       <div className="max-w-full overflow-x-auto">
         <div className="min-w-[1100px]">
           <Table>
             <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
               <TableRow>
-                <TableCell isHeader className="px-5 py-3 text-start">申请人</TableCell>
-                <TableCell isHeader className="px-5 py-3 text-start">部门</TableCell>
-                <TableCell isHeader className="px-5 py-3 text-start">报销类型</TableCell>
-                <TableCell isHeader className="px-5 py-3 text-start">报销金额</TableCell>
-                <TableCell isHeader className="px-5 py-3 text-start">申请日期</TableCell>
-                <TableCell isHeader className="px-5 py-3 text-start">审批状态</TableCell>
+                <TableCell isHeader className="px-5 py-3 text-start">{t('financeReimburse.table.applicant' as any)}</TableCell>
+                <TableCell isHeader className="px-5 py-3 text-start">{t('financeReimburse.table.department' as any)}</TableCell>
+                <TableCell isHeader className="px-5 py-3 text-start">{t('financeReimburse.table.type' as any)}</TableCell>
+                <TableCell isHeader className="px-5 py-3 text-start">{t('financeReimburse.table.amount' as any)}</TableCell>
+                <TableCell isHeader className="px-5 py-3 text-start">{t('financeReimburse.table.date' as any)}</TableCell>
+                <TableCell isHeader className="px-5 py-3 text-start">{t('financeReimburse.table.status' as any)}</TableCell>
               </TableRow>
             </TableHeader>
 
@@ -100,7 +107,6 @@ export default function Reimburse() {
                 <TableRow key={item.id}>
                   <TableCell className="px-5 py-4 text-start">
                     <div className="flex items-center gap-3">
-                      {/* 显示首字头像 */}
                       <div className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 text-blue-600 font-semibold text-sm">
                         {item.applicant.charAt(0)}
                       </div>
@@ -118,7 +124,7 @@ export default function Reimburse() {
                   <TableCell className="px-4 py-3 text-start text-gray-500">{item.date}</TableCell>
                   <TableCell className="px-4 py-3 text-start">
                     <Badge color={statusColors[item.status]} size="sm">
-                      {item.status}
+                      {t(`financeReimburse.status.${getStatusKey(item.status)}` as any)}
                     </Badge>
                   </TableCell>
                 </TableRow>
@@ -129,4 +135,14 @@ export default function Reimburse() {
       </div>
     </div>
   )
+}
+
+// 将中文状态转换为英文 key
+function getStatusKey(cn: string): string {
+  const map: Record<string, string> = {
+    '待审批': 'pending',
+    '已通过': 'approved',
+    '已拒绝': 'rejected',
+  }
+  return map[cn] || cn
 }

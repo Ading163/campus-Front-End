@@ -30,11 +30,11 @@
     "financeBudget": "Budget Management",
     "financePayment": "Payment Approval",
     "financeRecords": "Finance Records",
-    "students": "Student Affairs Management",
+    "students": "Student Affairs",
     "studentsLeave": "Leave Approval",
     "studentsPerformance": "Performance Management",
     "studentsDiscipline": "Disciplinary Records",
-    "studentsConsult": "Student Consultation Records",
+    "studentsConsult": "Consultation Records",
     "hr": "HR Management",
     "hrEmployees": "Employee Information",
     "hrAttendance": "Attendance Management",
@@ -45,7 +45,7 @@
     "logisticsSupplies": "Supplies Procurement",
     "logisticsCleaning": "Cleaning Records"
   },
-    "financeReimburse": {
+  "financeReimburse": {
     "title": "Reimbursement Approval",
     "table": {
       "applicant": "Applicant",
@@ -84,7 +84,8 @@
       "amount": "Amount",
       "reason": "Reason",
       "paymentDate": "Planned Payment Date",
-      "status": "Status"
+      "status": "Status",
+      "department": "Department"
     },
     "status": {
       "pending": "Pending",
@@ -107,5 +108,185 @@
       "payment": "Payment",
       "budget": "Budget"
     }
+  },
+  "studentsLeave": {
+    "table": {
+      "name": "Student name",
+      "id": "Student ID",
+      "class": "Class",
+      "type": "Leave type",
+      "dateRange": "Leave time",
+      "status": "Approval status"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "studentsPerformance": {
+    "title": "Grade Management",
+    "table": {
+      "name": "Student Name",
+      "id": "Student Number",
+      "class": "Class",
+      "subject": "Subject",
+      "score": "Score",
+      "level": "Grade Level"
+    },
+    "level": {
+      "excellent": "Excellent",
+      "pass": "Pass",
+      "fail": "Fail"
+    }
+  },
+  "studentsDiscipline": {
+    "table": {
+      "name": "Student name",
+      "id": "Student ID",
+      "class": "Class",
+      "type": "Discipline type",
+      "date": "Discipline date",
+      "status": "Processing status"
+    },
+    "status": {
+      "pending": "Pending",
+      "resolved": "Processed",
+      "appealed": "Appealed"
+    }
+  },
+  "studentsConsult": {
+    "table": {
+      "name": "Student name",
+      "id": "Student ID",
+      "class": "Class",
+      "topic": "Consultation topic",
+      "date": "Consultation date",
+      "status": "Processing status"
+    },
+    "status": {
+      "pending": "Pending",
+      "replied": "Replied",
+      "archived": "Archived"
+    }
+  },
+  "hrEmployees": {
+    "title": "Employee Information Management",
+    "table": {
+      "name": "Name",
+      "id": "Employee ID",
+      "department": "Department",
+      "position": "Position",
+      "email": "Email",
+      "entryDate": "Entry Date",
+      "employeeId": "Employee Number",
+      "phone": "Phone Number"
+    },
+    "filters": {
+      "department": "Department",
+      "name": "Name",
+      "employeeId": "Employee ID",
+      "searchPlaceholder": "Search by Name or ID",
+      "allDepartments": "All Departments"
+    },
+    "departmentList": {
+      "computerScience": "School of Computer Science",
+      "academicAffairs": "Office of Academic Affairs",
+      "languages": "Faculty of Languages",
+      "studentServices": "Student Services",
+      "logistics": "Logistics Department"
+    },
+    "positionList": {
+      "lecturer": "Lecturer",
+      "professor": "Professor",
+      "administrator": "Administrator",
+      "coordinator": "Coordinator",
+      "technician": "Technician"
+    }
+  },
+  "attendance": {
+  "title": "Attendance Management",
+  "filters": {
+    "allDepartments": "All Departments",
+    "allStatuses": "All Statuses"
+  },
+  "departmentList": {
+    "computerScience": "School of Computer Science",
+    "academicAffairs": "Office of Academic Affairs",
+    "languages": "Faculty of Languages",
+    "studentServices": "Student Services",
+    "logistics": "Logistics Department"
+  },
+  "table": {
+    "name": "Name",
+    "employeeId": "Employee ID",
+    "department": "Department",
+    "date": "Date",
+    "status": "Status"
+  },
+  "status": {
+    "present": "Present",
+    "absent": "Absent",
+    "late": "Late"
+  }
+},
+"performance": {
+  "title": "Performance Evaluation",
+  "filters": {
+    "allDepartments": "All Departments",
+    "allScores": "All Scores"
+  },
+  "departmentList": {
+    "computerScience": "School of Computer Science",
+    "academicAffairs": "Office of Academic Affairs",
+    "languages": "Faculty of Languages",
+    "studentServices": "Student Services",
+    "logistics": "Logistics Department"
+  },
+  "table": {
+    "name": "Name",
+    "employeeId": "Employee ID",
+    "department": "Department",
+    "score": "Score",
+    "date": "Evaluation Date"
+  },
+  "score": {
+    "excellent": "Excellent",
+    "good": "Good",
+    "average": "Average",
+    "poor": "Poor"
+  }
+},
+"onboarding": {
+  "title": "Onboarding Process Management",
+  "filters": {
+    "name": "Name",
+    "employeeId": "Employee ID",
+    "allDepartments": "All Departments",
+    "allStatuses": "All Statuses"
+  },
+  "departmentList": {
+    "computerScience": "School of Computer Science",
+    "academicAffairs": "Office of Academic Affairs",
+    "languages": "Faculty of Languages",
+    "studentServices": "Student Services",
+    "logistics": "Logistics Department"
+  },
+  "table": {
+    "name": "Name",
+    "employeeId": "Employee ID",
+    "department": "Department",
+    "position": "Position",
+    "startDate":"Application Date",
+    "status": "Status"
+  },
+  "status": {
+    "notStarted": "Rejected",
+    "inProgress": "Onboarding",
+    "completed": "Completed"
+  }
+},
+  "common": {
+    "all": "All"
   }
 }

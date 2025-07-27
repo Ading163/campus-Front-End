@@ -30,11 +30,11 @@
     "financeBudget": "预算申请管理",
     "financePayment": "付款审批",
     "financeRecords": "财务记录查询",
-    "students": "学生事务管理",
+    "students": "学生事务",
     "studentsLeave": "请假审批",
     "studentsPerformance": "成绩管理",
     "studentsDiscipline": "违纪记录",
-    "studentsConsult": "学生咨询记录",
+    "studentsConsult": "咨询记录",
     "hr": "人事管理",
     "hrEmployees": "员工信息",
     "hrAttendance": "考勤管理",
@@ -84,7 +84,8 @@
       "amount": "付款金额",
       "reason": "付款原因",
       "paymentDate": "计划付款日期",
-      "status": "状态"
+      "status": "状态",
+      "department": "部门"
     },
     "status": {
       "pending": "待审批",
@@ -107,5 +108,185 @@
       "payment": "付款",
       "budget": "预算"
     }
+  },
+  "studentsLeave": {
+    "table": {
+      "name": "学生姓名",
+      "id": "学号",
+      "class": "班级",
+      "type": "请假类型",
+      "dateRange": "请假时间",
+      "status": "审批状态"
+    },
+    "status": {
+      "pending": "待审批",
+      "approved": "已批准",
+      "rejected": "已驳回"
+    }
+  },
+  "studentsPerformance": {
+    "title": "成绩管理",
+    "table": {
+      "name": "学生姓名",
+      "id": "学号",
+      "class": "班级",
+      "subject": "科目",
+      "score": "分数",
+      "level": "成绩等级"
+    },
+    "level": {
+      "excellent": "优秀",
+      "pass": "及格",
+      "fail": "不及格"
+    }
+  },
+  "studentsDiscipline": {
+    "table": {
+      "name": "学生姓名",
+      "id": "学号",
+      "class": "班级",
+      "type": "违纪类型",
+      "date": "违纪日期",
+      "status": "处理状态"
+    },
+    "status": {
+      "pending": "待处理",
+      "resolved": "已处理",
+      "appealed": "已申诉"
+    }
+  },
+  "studentsConsult": {
+    "table": {
+      "name": "学生姓名",
+      "id": "学号",
+      "class": "班级",
+      "topic": "咨询主题",
+      "date": "咨询日期",
+      "status": "处理状态"
+    },
+    "status": {
+      "pending": "待处理",
+      "replied": "已回复",
+      "archived": "已归档"
+    }
+  },
+  "hrEmployees": {
+    "title": "员工信息管理",
+    "table": {
+      "name": "姓名",
+      "id": "员工ID",
+      "employeeId": "员工编号",
+      "department": "部门",
+      "position": "职位",
+      "email": "邮箱",
+      "entryDate": "入职日期",
+      "phone": "联系电话"
+    },
+    "filters": {
+      "department": "部门",
+      "name": "姓名",
+      "employeeId": "员工ID",
+      "searchPlaceholder": "请输入姓名或员工ID",
+      "allDepartments": "全部部门"
+    },
+    "departmentList": {
+      "computerScience": "计算机科学与技术学院",
+      "academicAffairs": "学术办公室",
+      "languages": "语言学院",
+      "studentServices": "学生服务",
+      "logistics": "物流学院"
+    },
+    "positionList": {
+      "lecturer": "讲师",
+      "professor": "教授",
+      "administrator": "管理员",
+      "coordinator": "协调员",
+      "technician": "技术人员"
+    }
+  },
+  "attendance": {
+    "title": "考勤管理",
+    "filters": {
+      "allDepartments": "全部部门",
+      "allStatuses": "全部考勤状态"
+    },
+    "departmentList": {
+      "computerScience": "计算机科学学院",
+      "academicAffairs": "教务处",
+      "languages": "语言学院",
+      "studentServices": "学生事务部",
+      "logistics": "后勤部"
+    },
+    "table": {
+      "name": "姓名",
+      "employeeId": "工号",
+      "department": "部门",
+      "date": "日期",
+      "status": "考勤状态"
+    },
+    "status": {
+      "present": "出勤",
+      "absent": "缺勤",
+      "late": "迟到"
+    }
+  },
+  "performance": {
+    "title": "绩效评估",
+    "filters": {
+      "allDepartments": "全部部门",
+      "allScores": "全部绩效评估"
+    },
+    "departmentList": {
+      "computerScience": "计算机科学学院",
+      "academicAffairs": "教务处",
+      "languages": "语言学院",
+      "studentServices": "学生事务部",
+      "logistics": "后勤部"
+    },
+    "table": {
+      "name": "姓名",
+      "employeeId": "工号",
+      "department": "部门",
+      "score": "绩效评估",
+      "date": "评估日期"
+    },
+    "score": {
+      "excellent": "优秀",
+      "good": "良好",
+      "average": "中等",
+      "poor": "差"
+    }
+  },
+  "onboarding": {
+    "title": "入职流程管理",
+    "filters": {
+      "name": "按姓名搜索",
+      "employeeId": "按工号搜索",
+      "allDepartments": "全部部门",
+      "allStatuses": "全部状态"
+    },
+    "departmentList": {
+      "computerScience": "计算机学院",
+      "academicAffairs": "教务处",
+      "languages": "语言学院",
+      "studentServices": "学生事务部",
+      "logistics": "后勤部"
+    },
+    "table": {
+      "name": "姓名",
+      "employeeId": "工号",
+      "department": "部门",
+      "position": "职位",
+      "startDate":"申请日期",
+      "status": "入职状态"
+    },
+    "status": {
+      "notStarted": "已驳回",
+      "inProgress": "审核中",
+      "completed": "已入职"
+    }
+  },
+  "common": {
+    "all": "全部"
   }
 }
