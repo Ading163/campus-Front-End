@@ -1,5 +1,4 @@
 import React from "react";
-// import { VectorMap } from "@react-jvectormap/core";
 import { worldMill } from "@react-jvectormap/world";
 import dynamic from "next/dynamic";
 
@@ -42,7 +41,7 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
           initial: {
             fill: "#465FFF",
             r: 4, // Custom radius for markers
-          }, // Type assertion to bypass strict CSS property checks
+          },
         } as MarkerStyle
       }
       markersSelectable={true}
@@ -78,6 +77,16 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
               strokeOpacity: 0,
             },
           },
+          // 新增中国标记（使用北京附近的坐标）
+          {
+            latLng: [39.9042, 116.4074],
+            name: "China",
+            style: {
+              fill: "#465FFF",
+              borderWidth: 1,
+              borderColor: "white",
+            },
+          }
         ] as Marker[]
       }
       zoomOnScroll={false}

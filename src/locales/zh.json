@@ -3,6 +3,8 @@
   "welcome": "欢迎来到管理后台",
   "menu": {
     "home": "首页",
+    "chat": "聊天",
+    "deepseek": "Deepseek",
     "calendar": "日历",
     "userProfile": "用户资料",
     "forms": "表单",
@@ -25,6 +27,12 @@
     "authentication": "认证",
     "signIn": "登录",
     "signUp": "注册",
+    "student": "学生",
+    "studentMaterial": "材料申请",
+    "studentCourses": "课程列表",
+    "studentGrades": "成绩查询",
+    "studentLeave": "请假申请",
+    "studentExams": "考试安排",
     "finance": "财务审批",
     "financeReimburse": "报销审批",
     "financeBudget": "预算申请管理",
@@ -45,21 +53,41 @@
     "logisticsSupplies": "物资采购",
     "logisticsCleaning": "卫生检查记录"
   },
+
   "financeReimburse": {
     "title": "报销审批",
     "table": {
       "applicant": "申请人",
       "department": "部门",
+      "description": "报销描述",
       "amount": "金额",
       "type": "类型",
       "date": "日期",
+      "action": "操作",
       "status": "状态"
     },
     "status": {
       "pending": "待审批",
       "approved": "已通过",
       "rejected": "已拒绝"
-    }
+    },
+    "filter": "筛选",
+    "createNew": "创建",
+    "selectType": "选择类型",
+    "selectDepartment": "选择部门",
+    "enterApplicant": "输入申请人",
+    "createReimburse": "创建报销",
+    "createReimburseTitle": "创建报销标题",
+    "approve": "审批",
+    "noAction": "无操作",
+    "reject": "拒绝",
+    "enterRejectReason": "输入拒绝原因",
+    "rejectReason": "拒绝原因",
+    "reimburseSuccess": "报销已通过",
+    "reimburseFail": "报销已拒绝",
+    "pleaseEnterReason": "请输入拒绝原因",
+    "rejectReasonTitle": "拒绝原因标题",
+    "reasonMinLength": "拒绝原因不能少于10个字符"
   },
   "financeBudget": {
     "title": "预算申请管理",
@@ -287,6 +315,8 @@
     }
   },
   "common": {
-    "all": "全部"
+    "all": "全部",
+    "cancel": "取消",
+    "confirm": "确认"
   }
 }

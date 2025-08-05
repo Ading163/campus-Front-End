@@ -1,21 +1,195 @@
 "use client";
-// import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-
 import dynamic from "next/dynamic";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { MoreDotIcon } from "@/icons";
 import { useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
-// Dynamically import the ReactApexChart component
+import useAuthStore from "@/store/useAuthStore";
+
+// 定义角色类型
+type Role = 
+  | "admin" 
+  | "teacher" 
+  | "staff_finance" 
+  | "staff_logistics" 
+  | "staff_student_affairs" 
+  | "staff_hr" 
+  | "staff_dormitory" 
+  | "student" 
+  | "default";
+
+// 定义角色对应的目标配置
+interface TargetConfig {
+  title: string;
+  description: string;
+  progress: number; // 完成百分比
+  trend: string; // 与上月相比
+  metrics: {
+    target: number;
+    processed: number;
+    today: number;
+    targetLabel: string;
+    processedLabel: string;
+    todayLabel: string;
+  };
+  color: string;
+}
+
+// 角色目标配置表
+const roleTargetConfig: Record<Role, TargetConfig> = {
+  admin: {
+    title: "System Maintenance Target",
+    description: "System stability and maintenance tasks completed this month",
+    progress: 82.3,
+    trend: "+5%",
+    metrics: {
+      target: 100,
+      processed: 82,
+      today: 3,
+      targetLabel: "Monthly Tasks",
+      processedLabel: "Completed",
+      todayLabel: "Today"
+    },
+    color: "#465FFF"
+  },
+  teacher: {
+    title: "Teaching Progress",
+    description: "Course completion and student assessment tasks",
+    progress: 68.5,
+    trend: "+2%",
+    metrics: {
+      target: 120,
+      processed: 82,
+      today: 4,
+      targetLabel: "Total Hours",
+      processedLabel: "Completed",
+      todayLabel: "Today"
+    },
+    color: "#22c55e"
+  },
+  staff_finance: {
+    title: "Payment Processing",
+    description: "Financial transactions and payment verifications completed",
+    progress: 91.7,
+    trend: "+8%",
+    metrics: {
+      target: 500,
+      processed: 458,
+      today: 24,
+      targetLabel: "Target Transactions",
+      processedLabel: "Processed",
+      todayLabel: "Today"
+    },
+    color: "#f59e0b"
+  },
+  staff_logistics: {
+    title: "Maintenance Completion",
+    description: "Facility maintenance requests resolved this month",
+    progress: 76.2,
+    trend: "-3%",
+    metrics: {
+      target: 150,
+      processed: 114,
+      today: 5,
+      targetLabel: "Target Requests",
+      processedLabel: "Resolved",
+      todayLabel: "Today"
+    },
+    color: "#ef4444"
+  },
+  staff_student_affairs: {
+    title: "Student Services",
+    description: "Student requests and service tasks completed",
+    progress: 88.4,
+    trend: "+10%",
+    metrics: {
+      target: 1200,
+      processed: 1061,
+      today: 42,
+      targetLabel: "Target Cases",
+      processedLabel: "Completed",
+      todayLabel: "Today"
+    },
+    color: "#8b5cf6"
+  },
+  staff_hr: {
+    title: "HR Tasks Completion",
+    description: "Personnel management and recruitment activities",
+    progress: 72.1,
+    trend: "+4%",
+    metrics: {
+      target: 80,
+      processed: 58,
+      today: 2,
+      targetLabel: "Target Tasks",
+      processedLabel: "Completed",
+      todayLabel: "Today"
+    },
+    color: "#06b6d4"
+  },
+  staff_dormitory: {
+    title: "Dormitory Management",
+    description: "Room assignments and maintenance requests",
+    progress: 85.3,
+    trend: "+1%",
+    metrics: {
+      target: 200,
+      processed: 171,
+      today: 3,
+      targetLabel: "Target Tasks",
+      processedLabel: "Completed",
+      todayLabel: "Today"
+    },
+    color: "#ec4899"
+  },
+  student: {
+    title: "Study Progress",
+    description: "Course attendance and assignment completion status",
+    progress: 62.8,
+    trend: "+7%",
+    metrics: {
+      target: 30,
+      processed: 19,
+      today: 2,
+      targetLabel: "Credit Target",
+      processedLabel: "Completed",
+      todayLabel: "Today"
+    },
+    color: "#10b981"
+  },
+  default: {
+    title: "Task Completion",
+    description: "System tasks and service requests completed this month",
+    progress: 75.5,
+    trend: "+10%",
+    metrics: {
+      target: 200,
+      processed: 151,
+      today: 8,
+      targetLabel: "Target Tasks",
+      processedLabel: "Completed",
+      todayLabel: "Today"
+    },
+    color: "#64748b"
+  }
+};
+
+// 动态导入图表组件
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
+  loading: () => <div className="h-64 flex items-center justify-center">Loading progress...</div>
 });
 
-export default function MonthlyTarget() {
-  const series = [75.55];
+export default function RoleBasedTarget() {
+  const user = useAuthStore((state) => state.user);
+  const userRole = (user?.role?.name as Role) || "default";
+  const config = roleTargetConfig[userRole];
+  
+  // 配置环形图
+  const series = [config.progress];
   const options: ApexOptions = {
-    colors: ["#465FFF"],
+    colors: [config.color],
     chart: {
       fontFamily: "Outfit, sans-serif",
       type: "radialBar",
@@ -34,7 +208,7 @@ export default function MonthlyTarget() {
         track: {
           background: "#E4E7EC",
           strokeWidth: "100%",
-          margin: 5, // margin is in pixels
+          margin: 5,
         },
         dataLabels: {
           name: {
@@ -54,7 +228,7 @@ export default function MonthlyTarget() {
     },
     fill: {
       type: "solid",
-      colors: ["#465FFF"],
+      colors: [config.color],
     },
     stroke: {
       lineCap: "round",
@@ -64,13 +238,11 @@ export default function MonthlyTarget() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  function toggleDropdown() {
-    setIsOpen(!isOpen);
-  }
+  const toggleDropdown = () => setIsOpen(!isOpen);
+  const closeDropdown = () => setIsOpen(false);
 
-  function closeDropdown() {
-    setIsOpen(false);
-  }
+  // 确定趋势颜色
+  const trendColor = config.trend.startsWith('+') ? 'success' : 'error';
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white/[0.03]">
@@ -78,15 +250,19 @@ export default function MonthlyTarget() {
         <div className="flex justify-between">
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-              Monthly Target
+              {config.title}
             </h3>
             <p className="mt-1 font-normal text-gray-500 text-theme-sm dark:text-gray-400">
-              Target you’ve set for each month
+              {config.description}
             </p>
           </div>
           <div className="relative inline-block">
-            <button onClick={toggleDropdown} className="dropdown-toggle">
-              <MoreDotIcon className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" />
+            <button 
+              onClick={toggleDropdown} 
+              className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Options"
+            >
+              <MoreDotIcon className="h-5 w-5 text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" />
             </button>
             <Dropdown
               isOpen={isOpen}
@@ -94,23 +270,22 @@ export default function MonthlyTarget() {
               className="w-40 p-2"
             >
               <DropdownItem
-                tag="a"
                 onItemClick={closeDropdown}
                 className="flex w-full font-normal text-left text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
               >
-                View More
+                View Details
               </DropdownItem>
               <DropdownItem
-                tag="a"
                 onItemClick={closeDropdown}
                 className="flex w-full font-normal text-left text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
               >
-                Delete
+                Export Report
               </DropdownItem>
             </Dropdown>
           </div>
         </div>
-        <div className="relative ">
+        
+        <div className="relative">
           <div className="max-h-[330px]">
             <ReactApexChart
               options={options}
@@ -120,37 +295,27 @@ export default function MonthlyTarget() {
             />
           </div>
 
-          <span className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-[95%] rounded-full bg-success-50 px-3 py-1 text-xs font-medium text-success-600 dark:bg-success-500/15 dark:text-success-500">
-            +10%
+          <span className={`absolute left-1/2 top-full -translate-x-1/2 -translate-y-[95%] rounded-full px-3 py-1 text-xs font-medium ${
+            trendColor === 'success' 
+              ? 'bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500' 
+              : 'bg-error-50 text-error-600 dark:bg-error-500/15 dark:text-error-500'
+          }`}>
+            {config.trend}
           </span>
         </div>
+        
         <p className="mx-auto mt-10 w-full max-w-[380px] text-center text-sm text-gray-500 sm:text-base">
-          You earn $3287 today, it&apos;s higher than last month. Keep up your
-          good work!
+          {config.description}
         </p>
       </div>
 
       <div className="flex items-center justify-center gap-5 px-6 py-3.5 sm:gap-8 sm:py-5">
         <div>
           <p className="mb-1 text-center text-gray-500 text-theme-xs dark:text-gray-400 sm:text-sm">
-            Target
+            {config.metrics.targetLabel}
           </p>
           <p className="flex items-center justify-center gap-1 text-base font-semibold text-gray-800 dark:text-white/90 sm:text-lg">
-            $20K
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M7.26816 13.6632C7.4056 13.8192 7.60686 13.9176 7.8311 13.9176C7.83148 13.9176 7.83187 13.9176 7.83226 13.9176C8.02445 13.9178 8.21671 13.8447 8.36339 13.6981L12.3635 9.70076C12.6565 9.40797 12.6567 8.9331 12.3639 8.6401C12.0711 8.34711 11.5962 8.34694 11.3032 8.63973L8.5811 11.36L8.5811 2.5C8.5811 2.08579 8.24531 1.75 7.8311 1.75C7.41688 1.75 7.0811 2.08579 7.0811 2.5L7.0811 11.3556L4.36354 8.63975C4.07055 8.34695 3.59568 8.3471 3.30288 8.64009C3.01008 8.93307 3.01023 9.40794 3.30321 9.70075L7.26816 13.6632Z"
-                fill="#D92D20"
-              />
-            </svg>
+            {config.metrics.target.toLocaleString()}
           </p>
         </div>
 
@@ -158,24 +323,10 @@ export default function MonthlyTarget() {
 
         <div>
           <p className="mb-1 text-center text-gray-500 text-theme-xs dark:text-gray-400 sm:text-sm">
-            Revenue
+            {config.metrics.processedLabel}
           </p>
           <p className="flex items-center justify-center gap-1 text-base font-semibold text-gray-800 dark:text-white/90 sm:text-lg">
-            $20K
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M7.60141 2.33683C7.73885 2.18084 7.9401 2.08243 8.16435 2.08243C8.16475 2.08243 8.16516 2.08243 8.16556 2.08243C8.35773 2.08219 8.54998 2.15535 8.69664 2.30191L12.6968 6.29924C12.9898 6.59203 12.9899 7.0669 12.6971 7.3599C12.4044 7.6529 11.9295 7.65306 11.6365 7.36027L8.91435 4.64004L8.91435 13.5C8.91435 13.9142 8.57856 14.25 8.16435 14.25C7.75013 14.25 7.41435 13.9142 7.41435 13.5L7.41435 4.64442L4.69679 7.36025C4.4038 7.65305 3.92893 7.6529 3.63613 7.35992C3.34333 7.06693 3.34348 6.59206 3.63646 6.29926L7.60141 2.33683Z"
-                fill="#039855"
-              />
-            </svg>
+            {config.metrics.processed.toLocaleString()}
           </p>
         </div>
 
@@ -183,24 +334,10 @@ export default function MonthlyTarget() {
 
         <div>
           <p className="mb-1 text-center text-gray-500 text-theme-xs dark:text-gray-400 sm:text-sm">
-            Today
+            {config.metrics.todayLabel}
           </p>
           <p className="flex items-center justify-center gap-1 text-base font-semibold text-gray-800 dark:text-white/90 sm:text-lg">
-            $20K
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M7.60141 2.33683C7.73885 2.18084 7.9401 2.08243 8.16435 2.08243C8.16475 2.08243 8.16516 2.08243 8.16556 2.08243C8.35773 2.08219 8.54998 2.15535 8.69664 2.30191L12.6968 6.29924C12.9898 6.59203 12.9899 7.0669 12.6971 7.3599C12.4044 7.6529 11.9295 7.65306 11.6365 7.36027L8.91435 4.64004L8.91435 13.5C8.91435 13.9142 8.57856 14.25 8.16435 14.25C7.75013 14.25 7.41435 13.9142 7.41435 13.5L7.41435 4.64442L4.69679 7.36025C4.4038 7.65305 3.92893 7.6529 3.63613 7.35992C3.34333 7.06693 3.34348 6.59206 3.63646 6.29926L7.60141 2.33683Z"
-                fill="#039855"
-              />
-            </svg>
+            {config.metrics.today.toLocaleString()}
           </p>
         </div>
       </div>

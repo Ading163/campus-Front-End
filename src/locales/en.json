@@ -3,6 +3,8 @@
   "welcome": "Welcome to the dashboard",
   "menu": {
     "home": "Home",
+    "chat": "Chat",
+    "deepseek": "Deepseek",
     "calendar": "Calendar",
     "userProfile": "User Profile",
     "forms": "Forms",
@@ -25,8 +27,15 @@
     "authentication": "Authentication",
     "signIn": "Sign In",
     "signUp": "Sign Up",
+    "student": "Student Management",
+    "studentMaterial":"Material application",
+    "studentCourses": "Course List",
+    "studentGrades": "Grade Query",
+    "studentLeave": "Leave Application",
+    "studentExams":"Exam schedules",
     "finance": "Finance Approval",
     "financeReimburse": "Reimbursement Approval",
+    "financeReimburseTitle": "Reimbursement Approval",
     "financeBudget": "Budget Management",
     "financePayment": "Payment Approval",
     "financeRecords": "Finance Records",
@@ -45,21 +54,61 @@
     "logisticsSupplies": "Supplies Procurement",
     "logisticsCleaning": "Cleaning Records"
   },
+  "student": {
+    "title": "Student Management",
+    "subItems": [
+      {
+        "name": "menu.studentCourses",
+        "path": "/student/courses",
+        "roles": ["admin", "student"]
+      },
+      {
+        "name": "menu.studentGrades",
+        "path": "/student/grades",
+        "roles": ["admin", "student"]
+      },
+      {
+        "name": "menu.studentLeave",
+        "path": "/student/leave",
+        "roles": ["admin", "student"]
+      }
+    ]
+  },
   "financeReimburse": {
     "title": "Reimbursement Approval",
     "table": {
       "applicant": "Applicant",
       "department": "Department",
+      "description": "Description",
       "amount": "Amount",
       "type": "Type",
       "date": "Date",
-      "status": "Status"
+      "status": "Status",
+      "action": "Action"
     },
     "status": {
       "pending": "Pending",
       "approved": "Approved",
       "rejected": "Rejected"
-    }
+    },
+    "filter": "Filter",
+    "createNew": "Create New",
+    "selectType": "Select Type",
+    "selectDepartment": "Select Department",
+    "enterApplicant": "Enter Applicant",
+    "createReimburse": "Create Reimbursement",
+    "createReimburseTitle": "Create Reimbursement Title",
+    "enterDescription": "Enter Description",
+    "approve": "Approve",
+    "reject": "Reject",
+    "noAction": "No Action",
+    "enterRejectReason": "Enter Reject Reason",
+    "rejectReason": "Reject Reason",
+    "reimburseSuccess": "Reimbursement Approved",
+    "reimburseFail": "Reimbursement Rejected",
+    "pleaseEnterReason": "Please enter the reject reason",
+    "rejectReasonTitle": "Reject Reason Title",
+    "reasonMinLength": "Reject reason must be at least 10 characters long"
   },
   "financeBudget": {
     "title": "Budget Management",

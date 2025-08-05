@@ -1,5 +1,6 @@
 "use client";
-
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useSidebar } from "@/context/SidebarContext";
 import AppHeader from "@/layout/AppHeader";
 import AppSidebar from "@/layout/AppSidebar";
@@ -19,7 +20,14 @@ export default function AdminLayout({
     : isExpanded || isHovered
     ? "lg:ml-[290px]"
     : "lg:ml-[90px]";
+  const router = useRouter();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/signin"); // 未登录跳转到登录页
+    }
+  }, [router]);
   return (
     <div className="min-h-screen xl:flex">
       {/* Sidebar and Backdrop */}
