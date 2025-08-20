@@ -371,7 +371,7 @@ export default function ReimburseAntd() {
           </Radio.Group>
         </Space>
       </div>
-{/* 
+
       <Table
         columns={columns}
         dataSource={filteredData}
@@ -382,7 +382,7 @@ export default function ReimburseAntd() {
           showTotal: (total) => `${t('common.total' as any)} ${total} ${t('common.items' as any)}`
         }}
         scroll={{ x: 'max-content' }}
-      /> */}
+      />
 
       {/* 驳回原因弹窗 */}
       <Modal
@@ -401,6 +401,7 @@ export default function ReimburseAntd() {
           <Button
             key="confirm"
             danger
+            loading={currentItem && loading === currentItem.id}
             onClick={handleRejectConfirm}
           >
             {t('common.confirm' as any)}
@@ -419,7 +420,10 @@ export default function ReimburseAntd() {
             >
               <Input.TextArea
                 rows={4}
-                placeholder={t('financeReimburse.enterRejectReason' as any)}
+                placeholder={t('financeReimburse.enterRejectReason' as any, {
+                  applicant: currentItem.applicant,
+                  amount: currentItem.amount.toFixed(2)
+                })}
               />
             </Form.Item>
           </Form>
